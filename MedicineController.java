@@ -1,8 +1,7 @@
-package com.test.springboot.Controller;
+package com.example.backend.controller;
 
-
-import com.test.springboot.Entity.Medicine;
-import com.test.springboot.Repository.MedicineRepository;
+import com.example.backend.model.Medicine;
+import com.example.backend.repository.MedicineRepository;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -17,10 +16,8 @@ import java.util.Optional;
 @RequestMapping("/api/medicine")
 public class MedicineController {
 
-
     @Resource
     private final MedicineRepository medicineRepository;
-
 
     @GetMapping
     public ResponseEntity<Iterable<Medicine>> getAllStudents() {
@@ -37,6 +34,7 @@ public class MedicineController {
         }
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteStudentById(@PathVariable long id) {
         medicineRepository.deleteById(id);
@@ -44,13 +42,13 @@ public class MedicineController {
     }
 
     @PostMapping
-    public ResponseEntity<Medicine> createStudent(@RequestBody @Valid Medicine student) {
-        return new ResponseEntity<>(medicineRepository.save(student), HttpStatus.CREATED);
+    public ResponseEntity<Medicine> createStudent(@RequestBody @Valid Medicine medicine) {
+        return new ResponseEntity<>(medicineRepository.save(medicine), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateStudent(@RequestBody @Valid Medicine updatedMedicine) {
-        medicineRepository.save(updatedMedicine);
+    public ResponseEntity<HttpStatus> updateStudent(@RequestBody @Valid Medicine medicine) {
+        medicineRepository.save(medicine);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

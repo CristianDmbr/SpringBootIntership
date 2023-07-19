@@ -55,8 +55,10 @@ public class MedicineController {
     //Method that allows to insert data into the table.
     @PostMapping
     public ResponseEntity<Medicine> createMedicine(@RequestBody @Valid Medicine medicine) {
-        return new ResponseEntity<>(medicineRepository.save(medicine), HttpStatus.CREATED);
+        Medicine savedMedicine = medicineRepository.save(medicine);
+        return new ResponseEntity<>(savedMedicine, HttpStatus.CREATED);
     }
+
 
     //Method updating the data from the table.
     @PutMapping

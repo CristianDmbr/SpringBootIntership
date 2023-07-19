@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.boot.convert.DataSizeUnit;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -36,12 +35,12 @@ public class Medicine {
     @Column(name = "medicineproducer")
     private String producerName;
 
-    @NotNull
+    @NotBlank
     @PastOrPresent(message = "Add a accurate date.")
     @Column(name = "best_before_date")
     private Date bestBeforeDate;
 
     @Column(name = "created_tm", insertable = false, updatable = false)
     private LocalDateTime createdTm;
-
+    
 }

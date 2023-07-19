@@ -20,12 +20,12 @@ public class MedicineController {
     private final MedicineRepository medicineRepository;
 
     @GetMapping
-    public ResponseEntity<Iterable<Medicine>> getAllStudents() {
+    public ResponseEntity<Iterable<Medicine>> getAllMedicine() {
         return new ResponseEntity<>(medicineRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Medicine> getStudentById(@PathVariable long id) {
+    public ResponseEntity<Medicine> getMedicineById(@PathVariable long id) {
         Optional<Medicine> student = medicineRepository.findById(id);
         if (student.isPresent()) {
             return new ResponseEntity<>(student.get(), HttpStatus.OK);
@@ -36,18 +36,18 @@ public class MedicineController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteStudentById(@PathVariable long id) {
+    public ResponseEntity<HttpStatus> deleteMedicineById(@PathVariable long id) {
         medicineRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping
-    public ResponseEntity<Medicine> createStudent(@RequestBody @Valid Medicine medicine) {
+    public ResponseEntity<Medicine> createMedicine(@RequestBody @Valid Medicine medicine) {
         return new ResponseEntity<>(medicineRepository.save(medicine), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<HttpStatus> updateStudent(@RequestBody @Valid Medicine medicine) {
+    public ResponseEntity<HttpStatus> updateMedicine(@RequestBody @Valid Medicine medicine) {
         medicineRepository.save(medicine);
         return new ResponseEntity<>(HttpStatus.OK);
     }

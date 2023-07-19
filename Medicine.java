@@ -1,17 +1,16 @@
 package com.example.backend.model;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,12 +34,10 @@ public class Medicine {
     @Column(name = "medicineproducer")
     private String producerName;
 
-    @NotBlank
-    @PastOrPresent(message = "Add a accurate date.")
+    @PastOrPresent(message = "Add an accurate date.")
     @Column(name = "best_before_date")
-    private Date bestBeforeDate;
+    private LocalDate bestBeforeDate; // Use LocalDate instead of Date
 
     @Column(name = "created_tm", insertable = false, updatable = false)
     private LocalDateTime createdTm;
-    
 }

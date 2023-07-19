@@ -1,60 +1,47 @@
-package com.test.springboot.Entity;
-
+package com.example.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.boot.convert.DataSizeUnit;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table (name = "medicine_data_base")
+@Table(name = "medicine")
 public class Medicine {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    private String medicinename;
-    private String medicineproducer;
-    private Date bestbeforedate;
+    @NotBlank
+    @Size(min = 2, max = 30, message = "The minimum and maximum lengths are 2 and 30 for adding a medicine name.")
+    @Column(name = "medicinename")
+    private String medicineName;
 
-    public Medicine(String medicinename, String medicineproducer,Date bestbeforedate){
-        this.medicinename = medicinename;
-        this.medicineproducer = medicineproducer;
-        this.bestbeforedate = bestbeforedate;
-    }
+    @NotBlank
+    @Size(min = 2, max = 30, message = "The minimum and maximum lengths are 2 and 30 for adding the producer name.")
+    @Column(name = "medicineproducer")
+    private String producerName;
 
-    public Medicine() {
+    @NotNull
+    @PastOrPresent(message = "Add a accurate date.")
+    @Column(name = "best_before_date")
+    private Date bestBeforeDate;
 
-    }
+    @Column(name = "created_tm", insertable = false, updatable = false)
+    private LocalDateTime createdTm;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMedicinename() {
-        return medicinename;
-    }
-
-    public void setMedicinename(String medicinename) {
-        this.medicinename = medicinename;
-    }
-
-    public String getMedicineproducer() {
-        return medicineproducer;
-    }
-
-    public void setMedicineproducer(String medicineproducer) {
-        this.medicineproducer = medicineproducer;
-    }
-
-    public Date getBestbeforedate() {
-        return bestbeforedate;
-    }
-
-    public void setBestbeforedate(Date bestbeforedate) {
-        this.bestbeforedate = bestbeforedate;
-    }
 }

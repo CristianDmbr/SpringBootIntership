@@ -15,12 +15,12 @@ public class PrescriptionController {
     private PrescriptionRepository prescriptionRepository;
 
     @GetMapping
-    public ResponseEntity<Iterable<Prescription>> getAllPrescrition() {
+    public ResponseEntity<Iterable<Prescription>> getAllPrescription() {
         return new ResponseEntity<>(prescriptionRepository.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> createPrescrition(@RequestBody Prescription prescription) {
+    public ResponseEntity<HttpStatus> createPrescription(@RequestBody Prescription prescription) {
         prescriptionRepository.save(prescription);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

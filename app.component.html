@@ -1,0 +1,40 @@
+<div class="content" role="main">
+  <input type="hidden" #selection>
+</div>
+
+<div class="content" role="main">
+  <input type="hidden" #selection [disabled]="isDisabled">
+  <p>{{ title }}</p>
+</div>
+
+<div class="content" role="main">
+  <div>
+    <input [(ngModel)]="inputText" [disabled]="isDisabled" placeholder="Type something...">
+    <button (click)="showAlert()">Show Input Text</button>
+  </div>
+</div>
+
+<div class="content" role="main">
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Occupation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let person of people">
+      <td>{{ person.name }}</td>
+      <td>{{ person.age }}</td>
+      <td>{{ person.occupation }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="content" role="main">
+  <app-medicine></app-medicine> <!-- Add the data-table component here -->
+</div>
+
+<router-outlet></router-outlet>

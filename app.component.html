@@ -1,40 +1,25 @@
 <div class="content" role="main">
-  <input type="hidden" #selection>
-</div>
+  <p>{{ someVar }}</p>
 
-<div class="content" role="main">
-  <input type="hidden" #selection [disabled]="isDisabled">
-  <p>{{ title }}</p>
-</div>
+  <!-- Button to trigger the method call -->
+  <button (click)="activateButton()">Activate Button</button>
 
-<div class="content" role="main">
-  <div>
-    <input [(ngModel)]="inputText" [disabled]="isDisabled" placeholder="Type something...">
-    <button (click)="showAlert()">Show Input Text</button>
-  </div>
-</div>
+  <!-- Button whose state will be updated -->
+  <button [disabled]="isButtonDisabled">Button to Update</button>
 
-<div class="content" role="main">
-  <table>
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Occupation</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let person of people">
-      <td>{{ person.name }}</td>
-      <td>{{ person.age }}</td>
-      <td>{{ person.occupation }}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- Input with ngModel for two-way binding -->
+  <input [(ngModel)]="inputText" placeholder="Enter text">
 
-<div class="content" role="main">
-  <app-medicine></app-medicine> <!-- Add the data-table component here -->
-</div>
+  <!-- Button to display an alert with the inputText value -->
+  <button (click)="displayInputText()">Display Input Text</button>
 
-<router-outlet></router-outlet>
+  <ul>
+    <li *ngFor="let item of medicine">
+      {{ item.id}} {{ item.name }} {{ item.description }}
+    </li>
+  </ul>
+
+  <app-medicine></app-medicine>
+
+  <router-outlet></router-outlet>
+</div>

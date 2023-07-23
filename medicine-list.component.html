@@ -1,0 +1,27 @@
+<a routerLink="/medicine-create" class="btn btn-success float-right mb-4">Add medicine</a>
+
+<table class="table" aria-label="Table with medicine">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Medicine Name </th>
+    <th scope="col">Producer name</th>
+    <th scope="col">Best before date</th>
+    <th scope="col">Prescription</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let medicine of medicines; index as i">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{medicine.medicineName}}</td>
+    <td>{{medicine.producerName}}</td>
+    <td>{{medicine.bestBeforeDate}}</td>
+    <td>{{medicine.prescription?.medicineType}}</td>
+    <td>
+      <a href="/medicine-edit/{{medicine.id}}" class="btn btn-info">Edit</a>
+      <button class="btn btn-danger" (click)="deleteMedicine(medicine)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

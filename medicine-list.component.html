@@ -1,10 +1,10 @@
 <a routerLink="/medicine-create" class="btn btn-success float-right mb-4">Add medicine</a>
 
-<table class="table" aria-label="Table with medicine">
+<table class="table" aria-label="Table with medicines">
   <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Medicine Name </th>
+    <th scope="col">Medicine name</th>
     <th scope="col">Producer name</th>
     <th scope="col">Best before date</th>
     <th scope="col">Prescription</th>
@@ -16,12 +16,20 @@
     <th scope="row">{{i + 1}}</th>
     <td>{{medicine.medicineName}}</td>
     <td>{{medicine.producerName}}</td>
-    <td>{{medicine.bestBeforeDate}}</td>
+    <td>{{medicine.bestBeforeDate | date}}</td>
     <td>{{medicine.prescription?.medicineType}}</td>
     <td>
-      <a href="/medicine-edit/{{medicine.id}}" class="btn btn-info">Edit</a>
+      <a [routerLink]="['/medicine-edit', medicine.id]" class="btn btn-info">Edit</a>
       <button class="btn btn-danger" (click)="deleteMedicine(medicine)">Delete</button>
     </td>
   </tr>
   </tbody>
 </table>
+
+<!-- Add the generated HTML snippet here -->
+<div class="container">
+  <div class="row">
+    <!-- Add the MedicineListComponent selector here to display the table -->
+    <app-medicine-list></app-medicine-list>
+  </div>
+</div>
